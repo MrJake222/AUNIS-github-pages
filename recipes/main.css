@@ -1,0 +1,18 @@
+#root {
+	display: flex;
+	flex-flow: row-reverse;
+	justify-content: space-between;
+}
+
+article {	
+	margin-top: 20px;
+	/* margin-bottom: 40px; */
+}
+
+#costs {
+	width: 330px;
+}
+
+#ingredients {
+	width: 340px;
+}

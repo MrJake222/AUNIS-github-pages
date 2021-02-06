@@ -1,0 +1,23 @@
+#overallCost {
+	margin-left: 15px;
+	/* width: 440px; */
+}
+
+.costEntry {
+	display: flex;
+	justify-content: space-between;
+
+	margin-top: 2px;
+	align-items: center;
+
+	border-bottom: 1px solid #cdc7c2;
+	padding-bottom: 1px;
+}
+
+.costEntry .nameDiv {
+	width: max-content;
+}
+
+h3 {
+	margin: 6px;
+}

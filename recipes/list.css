@@ -1,0 +1,59 @@
+#formContainer {
+	margin-left: 15px;
+}
+
+#formContainer form {
+	margin-bottom: 10px;
+}
+
+#list {
+	/* width: 440px; */
+	margin-left: 5px;
+}
+
+.listEntry {
+	display: flex;
+	height: 28px;
+
+	margin-top: 2px;
+	align-items: center;
+
+	border-bottom: 1px solid #cdc7c2;
+	padding-bottom: 1px;
+}
+
+.addButton {
+	width: 18px;
+	height: 20px;
+	text-align: center;
+	background: #c6ffc6;
+	border-radius: 4px;
+	cursor: pointer;
+	margin-right: 5px;
+
+	border: 1px solid #cdc7c2;
+}
+
+.listEntry .nameDiv {
+	width: max-content;
+}
+
+.outCountDiv {
+	width: min-content;
+	font-size: 12px;
+	position: relative;
+	top: 4px;
+}
+
+.numberInput {
+	width: 37px;
+	margin-left: auto;
+}
+
+.selected .addButton {
+    background: #ffc6c6;
+}
+
+.selected .nameDiv {
+	font-weight: bold;
+}

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AUNIS Recipes</title>
+
+    <link rel="stylesheet" href="main.css" />
+    <link rel="stylesheet" href="list.css" />
+    <link rel="stylesheet" href="cost.css" />
+
+    <script src="../data/recipes.js"></script>
+    <script src="../data/en_us.js"></script>
+    <script src="../data/en_us_minecraft.js"></script>
+    <script src="NameResolver.js"></script>
+    <script src="CostEntry.js"></script>
+    <script src="ListEntry.js"></script>
+    <script src="main.js"></script>
+</head>
+<body>
+    <h1>AUNIS recipe calculator</h1>
+
+    <section id="root">
+        <article id="costs">
+            <h3>Total costs</h3>
+            <section id="overallCost"></section>
+        </article>
+
+        <article id="ingredients">
+            <h3>Ingredients</h3>
+
+            <section id="formContainer">
+                <form onsubmit="return onSearchSubmit(event)">
+                    Search<br><input type="text" id="search" />
+                </form>
+
+                <section id="list"></section>
+            </section>
+        </article>
+    </section>
+
+</body>
+</html>
