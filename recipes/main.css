@@ -1,18 +1,28 @@
-#root {
-	display: flex;
-	flex-flow: row-reverse;
-	justify-content: space-between;
+@media screen and (min-width: 500px) {
+	#root {
+		display: flex;
+		flex-flow: row-reverse;
+		justify-content: space-between;
+	}
+
+	article {
+		width: 340px;
+	}
+}
+
+@media screen and (max-width: 500px) {
+	#root {
+		display: flex;
+		flex-flow: column;
+		align-items: center;
+	}
+
+	article {
+		width: 90%;
+	}
 }
 
 article {	
 	margin-top: 20px;
 	/* margin-bottom: 40px; */
-}
-
-#costs {
-	width: 330px;
-}
-
-#ingredients {
-	width: 340px;
 }
