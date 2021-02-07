@@ -1,0 +1,42 @@
+#saved {
+	margin-left: 15px;
+	/* width: 440px; */
+}
+
+.savedEntry {
+	display: flex;
+	justify-content: space-between;
+
+	margin-top: 2px;
+	align-items: center;
+
+	border-bottom: 1px solid #cdc7c2;
+	padding-bottom: 1px;
+}
+
+.savedEntry .nameDiv {
+    width: max-content;
+    margin-right: auto;
+}
+
+.savedEntry .loadButton {
+	text-align: center;
+	background: #c6ffc6;
+	border-radius: 4px;
+	cursor: pointer;
+	border: 1px solid #cdc7c2;
+    padding: 1px 7px;
+    
+    align-self: end;
+}
+
+.savedEntry .removeButton {
+	width: 19px;
+	height: 21px;
+	text-align: center;
+	background: #ffc6c6;
+	border-radius: 4px;
+	cursor: pointer;
+	border: 1px solid #cdc7c2;
+	margin-left: 2px;
+}

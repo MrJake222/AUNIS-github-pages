@@ -1,9 +1,13 @@
-#formContainer {
+#ingredientsContainer {
 	margin-left: 15px;
 }
 
-#formContainer form {
+#formContainer {
 	margin-bottom: 10px;
+}
+
+#formContainer form {
+	display: inline;
 }
 
 #list {
@@ -32,6 +36,10 @@
 	margin-right: 5px;
 
 	border: 1px solid #cdc7c2;
+}
+
+#clearSelectedButton {
+	margin-top: 2px;
 }
 
 .listEntry .nameDiv {

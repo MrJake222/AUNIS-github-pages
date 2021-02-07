@@ -1,5 +1,6 @@
 listEntries = []
 nameResolver = new NameResolver()
+stacker = new Stacker()
 
 window.onload = () => {
     // Load URL params
@@ -14,13 +15,14 @@ window.onload = () => {
 
     // Add all recipes to listEntries
     Object.values(recipes).forEach((recipe) => {
-        let entry = new ListEntry(recipe, () => reloadPage(searchQuery))
+        let entry = new ListEntry(recipe, () => reloadPageDefault())
         entry.setSelectedAndCountFromParams(params)
         listEntries.push(entry)
     })
 
     loadResults()
     loadList(searchQuery)
+    loadSaved()
 }
 
 function loadResults() {
@@ -28,7 +30,6 @@ function loadResults() {
 
     listEntries
         .filter(entry => entry.selected)
-        .sort((a, b) => a.name > b.name)
         .forEach((entry) => {
             let cost = entry.getOverallCost()
             // console.log(entry.name, entry.count, cost)
@@ -43,17 +44,29 @@ function loadResults() {
             })
         })
 
-    overallCost = Object.entries(overallCost)
-        .sort((a, b) => a[1] < b[1])
-
+    // a[0] - name
+    // a[1] - count
     // overallCost is now an array
+    overallCost = Object.entries(overallCost)
+
     let costElement = document.getElementById("overallCost")
-    overallCost.forEach((tab) => {
+    let addFunc = (tab) => {
         let key = tab[0]
         let count = Math.round(tab[1])
         let costEntry = new CostEntry(key, count)
         costElement.appendChild(costEntry.getDiv())
-    })
+    }
+
+    // Add all except energy
+    overallCost
+        .filter(a => a[0] != "energy")
+        .sort((a, b) => (a[1] < b[1]))
+        .forEach((tab) => addFunc(tab))
+
+    // Add energy
+    overallCost
+        .filter(a => a[0] == "energy")
+        .forEach(tab => addFunc(tab))
 }
 
 function loadList(filter) {
@@ -76,11 +89,39 @@ function loadList(filter) {
         })
 }
 
-function reloadPage(searchQuery) {
+function loadSaved() {
+    let saved = JSON.parse(localStorage.getItem("saved"))
+    if (saved == null)
+        return
+    
+    let savedDiv = document.getElementById("saved")
+
+    // Saved is an array of objects like {"name": name, "selected": selected}
+    for (let index=0; index<saved.length; index++) {
+        data = saved[index]
+
+        let entry = new SavedEntry(index, data, (entry) => {
+            // Reload page callback
+            // Called when Load button pressed
+            reloadPage(document.getElementById("search").value, entry.selected)
+        }, () => reloadPageDefault())
+        savedDiv.appendChild(entry.getDiv())
+    }
+}
+
+function reloadPageDefault() {
+    reloadPageSelected(document.getElementById("search").value)
+}
+
+function reloadPageSelected(searchQuery) {
+    let selectedEntries = listEntries.filter(entry => entry.selected)
+    reloadPage(document.getElementById("search").value, selectedEntries)
+}
+
+function reloadPage(searchQuery, selectedEntries) {
     let params = new URLSearchParams()
 
     // Add selected items (don't care about the previous URL, they are selected in onload)
-    let selectedEntries = listEntries.filter(entry => entry.selected)
     for (let i=0; i<selectedEntries.length; i++) {
         let entry = selectedEntries[i]
         params.append(entry.name, entry.count);
@@ -93,7 +134,36 @@ function reloadPage(searchQuery) {
 }
 
 function onSearchSubmit(event) {
-    let searchQuery = document.getElementById("search").value
-    reloadPage(searchQuery)
+    reloadPageDefault()
     return false
+}
+
+function clearSearch(event) {
+    reloadPageSelected("")
+    return false
+}
+
+function clearSelected(event) {
+    reloadPage(document.getElementById("search").value, [])
+}
+
+function costSave() {
+    let selected = listEntries
+        .filter(entry => entry.selected)
+        .map(entry => ({"name": entry.name, "count": entry.count}))
+
+    let saved = JSON.parse(localStorage.getItem("saved"))
+    if (saved == null)
+        saved = []
+    
+    let name = prompt("Name")
+    let obj = {
+        "name": name,
+        "selected": selected
+    }
+
+    saved.push(obj)
+    localStorage.setItem("saved", JSON.stringify(saved))
+
+    reloadPageDefault()
 }

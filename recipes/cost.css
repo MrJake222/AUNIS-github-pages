@@ -18,6 +18,30 @@
 	width: max-content;
 }
 
-h3 {
-	margin: 6px;
+#tooltipButtonContainer {
+	display: flex;
+	/* align-items: flex-end; */
+	/* align-content: flex-end; */
+}
+
+#tooltip {
+	font-size: 14px;
+	color: gray;
+	padding: 0 20px;
+	padding-top: 5px;
+}
+
+#costSaveButton {
+	align-self: flex-start;
+	margin-top: 3px;
+}
+
+.naquadahShards {
+	font-weight: bold;
+	color: #228028;
+}
+
+.enderPearls {
+	color: #208476;
+	font-weight: bold;
 }

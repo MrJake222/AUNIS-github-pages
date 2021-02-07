@@ -8,11 +8,14 @@
     <link rel="stylesheet" href="main.css" />
     <link rel="stylesheet" href="list.css" />
     <link rel="stylesheet" href="cost.css" />
+    <link rel="stylesheet" href="saved.css" />
 
     <script src="../data/recipes.js"></script>
     <script src="../data/en_us.js"></script>
     <script src="../data/en_us_minecraft.js"></script>
     <script src="NameResolver.js"></script>
+    <script src="Stacker.js"></script>
+    <script src="SavedEntry.js"></script>
     <script src="CostEntry.js"></script>
     <script src="ListEntry.js"></script>
     <script src="main.js"></script>
@@ -21,18 +24,35 @@
     <h1>AUNIS recipe calculator</h1>
 
     <section id="root">
-        <article id="costs">
-            <h3>Total costs</h3>
-            <section id="overallCost"></section>
-        </article>
+        <section id="costsSaved">
+            <article id="costs">
+                <h3>Total costs</h3>
+                <section id="overallCost"></section>
+
+                <div id="tooltipButtonContainer">
+                    <div id="tooltip">Hover over Naquadah Shards count to get approximate ore count.</div>
+                    <button id="costSaveButton" onclick="costSave()">Save</button>
+                </div>
+            </article>
+
+            <article id="savedArticle">
+                <h3>Saved craftings</h3>
+                <section id="saved"></section>
+            </article>
+        </section>
 
         <article id="ingredients">
             <h3>Ingredients</h3>
 
-            <section id="formContainer">
-                <form onsubmit="return onSearchSubmit(event)">
-                    Search<br><input type="text" id="search" />
-                </form>
+            <section id="ingredientsContainer">
+                <div id="formContainer">
+                    <form onsubmit="return onSearchSubmit(event)">
+                        Search<br><input type="text" id="search" />
+                    </form>
+
+                    <button onclick="clearSearch()">Clear</button>
+                    <button id="clearSelectedButton" onclick="clearSelected()">Clear selected</button>
+                </div>
 
                 <section id="list"></section>
             </section>

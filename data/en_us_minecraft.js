@@ -14,7 +14,6 @@ const langNamesMinecraft = {
     "minecraft:feather": "Feather",
     "ingotCopper": "Copper Ingot",
     "minecraft:gold_ingot": "Gold Ingot",
-    "minecraft:enderPearl": "Ender Pearl",
     "minecraft:ink_sac": "Ink Sac",
     "minecraft:redstone_block": "Redstone Block",
 

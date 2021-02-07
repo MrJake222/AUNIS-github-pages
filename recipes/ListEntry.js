@@ -1,7 +1,7 @@
 class ListEntry {
     constructor(recipe, reloadPageCallback) {
         this.recipe = recipe
-        this.name = nameResolver.resolve(recipe.output)
+        this.name = recipe.output
         this.reloadPageCallback = reloadPageCallback
 
         this.mainDiv = document.createElement("div")
@@ -15,7 +15,7 @@ class ListEntry {
 
         this.nameDiv = document.createElement("div")
         this.nameDiv.className = "nameDiv"
-        this.nameDiv.innerHTML = this.name
+        this.nameDiv.innerHTML = nameResolver.resolve(this.name)
         this.nameDiv.title = this.generateTitle()
         this.mainDiv.appendChild(this.nameDiv)
 
