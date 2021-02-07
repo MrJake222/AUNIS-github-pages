@@ -115,7 +115,7 @@ function reloadPageDefault() {
 
 function reloadPageSelected(searchQuery) {
     let selectedEntries = listEntries.filter(entry => entry.selected)
-    reloadPage(document.getElementById("search").value, selectedEntries)
+    reloadPage(searchQuery, selectedEntries)
 }
 
 function reloadPage(searchQuery, selectedEntries) {
